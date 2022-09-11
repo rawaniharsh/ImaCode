@@ -29,6 +29,7 @@ export default function Home() {
   }
   async function handleOnSubmit(event) {
     event.preventDefault();
+    console.log("Here, Working")
 
     const data = await fetch("/api/upload", {
       method: "POST",
@@ -61,7 +62,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>PicoBite</title>
+        <title>ImaCode</title>
       </Head>
       <body className={isDark ? "dark" : ""}>
         <main className='dark:bg-[#121212] ease-linear duration-200 '>

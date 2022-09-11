@@ -30,9 +30,11 @@ export default function Home() {
     ssr: false,
   });
 
+  console.log(imageSrc)
+
   function handleOnChange(changeEvent) {
     const reader = new FileReader();
-
+    console.log("Working.....")
     reader.onload = function (onLoadEvent) {
       setImageSrc(onLoadEvent.target.result);
       setUploadData(undefined);
@@ -42,7 +44,8 @@ export default function Home() {
   }
   async function handleOnSubmit(event) {
     event.preventDefault();
-
+    console.log('image source', imageSrc)
+    console.log("Here, Working")
     const data = await fetch("/api/upload", {
       method: "POST",
       body: JSON.stringify({
@@ -51,12 +54,13 @@ export default function Home() {
     }).then((r) => r.json());
 
     setUploadData(data.info.ocr.adv_ocr.data[0].textAnnotations[0].description);
-    console.log(uploadData);
+    // console.log("jxnkjdsnvkdjnfv", uploadData);
   }
   const { data, output, setOutput } = useHandle();
 
   //fetch
   const submit = async () => {
+    console.log("Is it working..")
     let postTokenoptions = {
       method: "POST",
       url: "https://judge0-ce.p.rapidapi.com/submissions",
@@ -77,12 +81,12 @@ export default function Home() {
     try {
       const response = await axios.request(postTokenoptions);
       // alert("working see console");
-      console.log(response);
+      console.log("response", response);
       setOutput(response.data.stdout);
       /* console.log(output); */
     } catch (err) {
       alert("error");
-      console.log(err);
+      console.log("error hi error",err);
     }
   };
 
@@ -170,7 +174,7 @@ export default function Home() {
   return (
     <>
     <Head>
-      <title>PicoBite - Home</title>
+      <title>ImaCode - Home</title>
     </Head>
     <motion.main
       variants={mainVarient}
